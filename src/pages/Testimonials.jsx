@@ -1,4 +1,5 @@
 import React from 'react';
+import Slider from 'react-slick';
 
 const testimonials = [
   {
@@ -47,7 +48,7 @@ const testimonials = [
 
 const TestimonialCard = ({ testimonial }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col h-full mx-2 my-12"> {/* Added mx-2 for spacing */}
       <div className="flex items-center">
         <img
           className="w-12 h-12 rounded-full object-cover"
@@ -59,7 +60,7 @@ const TestimonialCard = ({ testimonial }) => {
           <p className="text-gray-500 dark:text-gray-400 text-sm">{testimonial.location}</p>
         </div>
       </div>
-      <div className="mt-4 text-gray-700 dark:text-gray-300 text-sm">
+      <div className="mt-4 text-gray-700 dark:text-gray-300 text-sm overflow-hidden text-ellipsis h-16">
         {testimonial.review}
       </div>
       <div className="mt-3 text-yellow-400">
@@ -70,16 +71,39 @@ const TestimonialCard = ({ testimonial }) => {
 };
 
 const TestimonialsSection = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // Show 3 cards at a time
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2, // Show 2 cards on medium screens
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1, // Show 1 card on small screens
+        },
+      },
+    ],
+  };
+
   return (
-    <div className=" dark:bg-gray-900 py-12">
+    <div className="dark:bg-gray-900">
       <h2 className="text-center text-2xl font-bold dark:text-white mb-8">Hear From Our Beloved Students</h2>
-      
-      {/* Custom Grid for Layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
           <TestimonialCard key={index} testimonial={testimonial} />
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };

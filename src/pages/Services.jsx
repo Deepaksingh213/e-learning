@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const services = [
   {
@@ -34,9 +35,57 @@ const ServicesSection = () => {
         <p className="text-purple-600 dark:text-purple-400 font-bold text-2xl">Our Services</p>
        
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <div
-              key={index}
+          {/* First Card */}
+          <motion.div
+            key={0}
+            initial={{ opacity: 0, x: 50 }} // Start from right side
+            animate={{ opacity: 1, x: 0 }} // Move to the original position
+            transition={{ duration: 0.7 }} // Slower animation duration
+            className={`${services[0].cardBg} shadow-lg rounded-lg p-6 text-left relative`}
+          >
+            <div className={`${services[0].iconBg} w-12 h-12 rounded-full flex items-center justify-center mb-4`}>
+              <img src={services[0].iconSrc} alt={services[0].iconAlt} className="h-8 w-8" />
+            </div>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white">{services[0].title}</h3>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+              {services[0].description}
+            </p>
+            {services[0].title === "Marketing" && (
+              <a href="#" className="absolute right-2 bg-gray-400 dark:bg-gray-600 text-gray-900 dark:text-white px-4 py-2 rounded-lg shadow">
+                Learn More
+              </a>
+            )}
+          </motion.div>
+
+          {/* Second Card */}
+          <motion.div
+            key={1}
+            initial={{ opacity: 0, x: 50 }} // Start from right side
+            animate={{ opacity: 1, x: 0 }} // Move to the original position
+            transition={{ duration: 0.7, delay: 0.3 }} // Slight delay for the second card
+            className={`${services[1].cardBg} shadow-lg rounded-lg p-6 text-left relative`}
+          >
+            <div className={`${services[1].iconBg} w-12 h-12 rounded-full flex items-center justify-center mb-4`}>
+              <img src={services[1].iconSrc} alt={services[1].iconAlt} className="h-8 w-8" />
+            </div>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white">{services[1].title}</h3>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+              {services[1].description}
+            </p>
+            {services[1].title === "Marketing" && (
+              <a href="#" className="absolute right-2 bg-gray-400 dark:bg-gray-600 text-gray-900 dark:text-white px-4 py-2 rounded-lg shadow">
+                Learn More
+              </a>
+            )}
+          </motion.div>
+
+          {/* Last Three Cards */}
+          {services.slice(2).map((service, index) => (
+            <motion.div
+              key={index + 2} // Key should be unique, starting from 2 for the last cards
+              initial={{ opacity: 0, x: 50 }} // Start from right side
+              animate={{ opacity: 1, x: 0 }} // Move to the original position
+              transition={{ duration: 0.7, delay: 0.3 + index * 0.2 }} // Staggered entrance for the last three cards
               className={`${service.cardBg} shadow-lg rounded-lg p-6 text-left relative`}
             >
               <div className={`${service.iconBg} w-12 h-12 rounded-full flex items-center justify-center mb-4`}>
@@ -51,7 +100,7 @@ const ServicesSection = () => {
                   Learn More
                 </a>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

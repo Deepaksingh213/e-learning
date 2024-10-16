@@ -1,21 +1,7 @@
-// import React from 'react'
-// import Courses from "../pages/Courses"
-
-// const Categories = () => {
-//   return (
-//    <>
-//    <Courses />
-   
-//    </>
-//   )
-// }
-
-// export default Categories
-
 import React, { useState } from 'react';
 import { FiArrowRight } from "react-icons/fi";
 import course1 from "../assets/course1.jpg";  
-import couse2 from "../assets/couse2.jpg"
+import couse2 from "../assets/couse2.jpg";
 import course3 from "../assets/course3.jpg";
 import CourseCard from '../components/CourseCard';
 
@@ -69,24 +55,22 @@ const courseData = {
   ]
 };
 
-
-
 const Courses = () => {
   const [activeTab, setActiveTab] = useState('Design'); 
 
   return (
-    <div className="py-10 px-5">
-      <h2 className="text-3xl font-bold text-center dark:text-white mb-8">Our Courses</h2>
+    <div className="py-10 px-5 lg:px-20">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center dark:text-white mb-8">Our Courses</h2>
       
       {/* Tabs */}
-      <div className="flex justify-center space-x-4 mb-8">
+      <div className="flex justify-center flex-wrap gap-2 sm:gap-4 mb-8 px-2 md:px-4">
         {Object.keys(courseData).map((category) => (
           <button
             key={category}
             onClick={() => setActiveTab(category)}
-            className={`px-4 py-2 font-semibold rounded ${
-              activeTab === category ? "bg-primary text-white" : "bg-secondary"
-            }`}
+            className={`px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 font-semibold rounded ${
+              activeTab === category ? "bg-primary text-white" : "bg-secondary text-gray-800"
+            } hover:bg-primary hover:text-white transition duration-300`}
           >
             {category}
           </button>
@@ -102,7 +86,7 @@ const Courses = () => {
 
       {/* View All Courses Button */}
       <div className="flex justify-center items-center mt-8">
-        <button className="px-6 py-3 border border-primary text-secondary dark:text-secondary font-medium rounded-md hover:bg-primary dark:hover:bg-primary transition flex items-center space-x-2">
+        <button className="px-6 py-3 border border-primary text-secondary dark:text-secondary font-medium rounded-md hover:bg-primary dark:hover:bg-primary hover:text-white transition flex items-center space-x-2">
           <span>View All Courses</span> 
           <FiArrowRight />
         </button>

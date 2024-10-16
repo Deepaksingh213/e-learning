@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const benefitsData = [
   {
     title: "Online Degrees",
@@ -86,34 +88,70 @@ const benefitsData = [
 ];
 
 const BenefitsSection = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3, // Stagger the animations for child elements
+      },
+    },
+  };
+
+  const imageVariant = {
+    hidden: { opacity: 0, x: -50, scale: 0.8 }, // Start hidden and off to the left, scaled down
+    visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.5 } }, // Animate to visible and scale up
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className="bg-white dark:bg-gray-900 p-8 md:p-12 lg:p-16">
+    <motion.div
+      className="bg-white dark:bg-gray-900 p-8 md:p-12 lg:p-16"
+      initial="hidden"
+      animate="show"
+      variants={containerVariants}
+    >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center">
         {/* Left Image Section */}
-        <div className="mb-8 lg:mb-0 lg:w-1/2">
-          <img src={`/assert/product.svg`} alt="pic" className="h-[380px]"/>
-        </div>
+        <motion.div
+          variants={imageVariant}
+          initial="hidden"
+          animate="visible"
+          className="mb-8 lg:mb-0 lg:w-1/2"
+        >
+          <img src={`/assert/product.svg`} alt="pic" className="h-[380px]" />
+        </motion.div>
 
         {/* Right Content Section */}
-        <div className="lg:w-1/2 space-y-6 text-gray-900 dark:text-gray-100">
-          <h2 className="text-3xl font-bold text-purple-500 dark:text-purple-400 mb-6">
+        <motion.div
+          className="lg:w-1/2 space-y-6 text-gray-900 dark:text-gray-100"
+          variants={containerVariants}
+        >
+          <motion.h2
+            className="text-3xl font-bold text-purple-500 dark:text-purple-400 mb-6"
+            variants={itemVariants}
+          >
             Benefits From Our Online Learning
-          </h2>
+          </motion.h2>
 
           {benefitsData.map((benefit, index) => (
-            <div key={index} className="flex items-start space-x-4">
-              <div className={`benefit.iconColor mt-2`}>
+            <motion.div key={index} className="flex items-start space-x-4" variants={itemVariants}>
+              <div className={`${benefit.iconColor} mt-2`}>
                 {benefit.icon}
               </div>
               <div>
                 <h3 className="font-semibold text-lg">{benefit.title}</h3>
                 <p className="text-gray-500 dark:text-gray-400">{benefit.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
