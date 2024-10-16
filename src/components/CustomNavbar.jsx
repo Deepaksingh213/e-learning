@@ -23,7 +23,7 @@ const CustomNavbar = () => {
     <Navbar
       rounded
       fluid
-      className="backdrop-blur-lg bg-neutral-300/20 drop-shadow-2xl py-2 sm:py-3 md:px-12 shadow-sm"
+      className="backdrop-blur-lg bg-neutral-300/20 drop-shadow-2xl py-2 leading-tight sm:px-12  shadow-sm "
     >
       <Navbar.Brand href="#">
         <img
@@ -31,16 +31,16 @@ const CustomNavbar = () => {
           className="mr-3 h-6 sm:h-8 md:h-10 bg-transparent mix-blend-multiply"
           alt="K.K. Campus Logo"
         />
-        <span className="self-center whitespace-nowrap text-lg sm:text-xl md:text-2xl font-bold text-primary">
+        <span className="self-center whitespace-nowrap text-3xl sm:text-xl md:text-2xl font-bold text-primary">
           K.K.<span className="text-secondary"> Campus</span>
         </span>
       </Navbar.Brand>
 
-      <div className="flex md:order-2 gap-2 sm:gap-3">
-        <Button pill gradientDuoTone="greenToBlue" as={Link} to="login">
+      <div className="flex md:order-2  gap-3 md:gap-2">
+        <Button pill gradientDuoTone="greenToBlue" as={Link} to="login" className="px-8 sm:px-3">
           Login
         </Button>
-        <Button pill gradientDuoTone="greenToBlue" className="px-2 sm:px-3" as={Link} to="register">
+        <Button pill gradientDuoTone="greenToBlue" className="px-8 sm:px-3" as={Link} to="register">
           Signup
         </Button>
         <DarkThemeToggle />
